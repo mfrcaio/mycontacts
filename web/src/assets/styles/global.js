@@ -9,8 +9,9 @@ export default createGlobalStyle`
   }
 
   body {
-    background: ${({ theme }) => theme.colors.background};
     font-size: 16px;
+    background: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.gray[900]};
   }
 
   button {
