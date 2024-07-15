@@ -5,7 +5,7 @@ export const Container = styled.header`
   display: flex;
   flex-direction: column;
   align-items: center;
-`
+`;
 
 export const InputSearchContainer = styled.div`
   margin-top: 48px;
@@ -24,5 +24,5 @@ export const InputSearchContainer = styled.div`
     &::placeholder {
       color: #bcbcbc;
     }
-    }
-`
+  }
+`;
