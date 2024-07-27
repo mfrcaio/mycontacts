@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 
@@ -12,14 +14,16 @@ import Routes from '../../Routes';
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider theme={defaultTheme}>
-        <GlobalStyles />
+      <React.StrictMode>
+        <ThemeProvider theme={defaultTheme}>
+          <GlobalStyles />
 
-        <Container>
-          <Header />
-          <Routes />
-        </Container>
-      </ThemeProvider>
+          <Container>
+            <Header />
+            <Routes />
+          </Container>
+        </ThemeProvider>
+      </React.StrictMode>
     </BrowserRouter>
   );
 }
