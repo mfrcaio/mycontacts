@@ -1,11 +1,13 @@
+import PropTypes from 'prop-types';
+
 import { Overlay, Container, Footer } from './styles';
 
 import Button from '../Button';
 
-export default function Modal() {
+export default function Modal({ danger }) {
   return (
     <Overlay>
-      <Container>
+      <Container danger={danger}>
         <h1>titulo</h1>
         <p>paragrafo</p>
         <Footer>
@@ -15,11 +17,19 @@ export default function Modal() {
           >
             Cancelar
           </button>
-          <Button>
+          <Button danger={danger}>
             Deletar
           </Button>
         </Footer>
       </Container>
     </Overlay>
   )
+}
+
+Modal.propTypes = {
+  danger: PropTypes.bool,
+}
+
+Modal.defaultProps = {
+  danger: false,
 }
