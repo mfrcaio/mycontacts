@@ -23,7 +23,7 @@ export default function ContactForm({ buttonLabel }) {
     if (!event.target.value) {
       setErrors((prevState) => [
         ...prevState,
-        { field: 'name', error: 'Nome é obrigatório' },
+        { field: 'name', message: 'Nome é obrigatório' },
       ]);
     } else {
       setErrors((prevState) => prevState.filter(
@@ -42,13 +42,17 @@ export default function ContactForm({ buttonLabel }) {
 
       setErrors((prevState) => [
         ...prevState,
-        { field: 'email', error: 'Email inválido' },
+        { field: 'email', message: 'Email inválido' },
       ]);
     } else {
       setErrors((prevState) => prevState.filter(
         (error) => error.field !== 'email',
       ));
     }
+  }
+
+  function getErrorMessageByFieldName(fieldName) {
+    return errors.find((error) => error.field === fieldName)?.message;
   }
 
   function handleSubmit(event) {
@@ -61,19 +65,21 @@ export default function ContactForm({ buttonLabel }) {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFieldName('name')}>
         <Input
           placeholder='Nome'
           value={name}
           onChange={handleNameChange}
+          error={getErrorMessageByFieldName('name')}
         />
       </FormGroup>
 
-      <FormGroup>
+      <FormGroup error={getErrorMessageByFieldName('email')}>
         <Input
           placeholder='E-mail'
           value={email}
           onChange={handleEmailChange}
+          error={getErrorMessageByFieldName('email')}
         />
       </FormGroup>
 
