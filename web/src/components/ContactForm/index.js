@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 import { ButtonContainer, Form } from './styles';
 
@@ -8,25 +9,45 @@ import Select from '../Select';
 import Button from '../Button';
 
 export default function ContactForm({ buttonLabel }) {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [category, setCategory] = useState('');
+
   return (
     <Form>
       <FormGroup>
-        <Input placeholder='Nome'/>
-      </FormGroup>
-
-      <FormGroup
-        error='O formato do e-mail é inválido'
-      >
-        <Input placeholder='E-mail' error />
-      </FormGroup>
-
-      <FormGroup>
-        <Input placeholder='Telefone'/>
+        <Input
+          placeholder='Nome'
+          value={name}
+          onChange={(event) => setName(event.target.value)}
+        />
       </FormGroup>
 
       <FormGroup>
-        <Select>
-          <option value='teste'>teste</option>
+        <Input
+          placeholder='E-mail'
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
+      </FormGroup>
+
+      <FormGroup>
+        <Input
+          placeholder='Telefone'
+          value={phone}
+          onChange={(event) => setPhone(event.target.value)}
+        />
+      </FormGroup>
+
+      <FormGroup>
+        <Select
+          value={category}
+          onChange={(event) => setCategory(event.target.value)}
+        >
+          <option value=''>categoria</option>
+          <option value='discord'>discord</option>
+          <option value='instagram'>instagram</option>
         </Select>
       </FormGroup>
 

@@ -62,9 +62,3 @@ export const Overlay = styled.div`
     animation: ${load} 1.7s infinite ease, ${round} 1.7s infinite ease;
   }
 `;
-
-
-
-
-
-
