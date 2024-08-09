@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
-import { Container, Header, ListContainer, Card, InputSearchContainer } from './styles';
-
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
+
+import { Container, Header, ListContainer, Card, InputSearchContainer } from './styles';
 
 export default function Home() {
   return (
