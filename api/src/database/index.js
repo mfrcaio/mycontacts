@@ -8,7 +8,11 @@ const client = new Client({
     database: 'mycontacts',
 });
 
-client.connect();
+client.connect().then(success => {
+    console.log("Banco de dados connectado com sucesso!")
+}).catch(error => {
+    console.log(`Algum erro aconteceu na conexão com o banco. Erro: ${error}`)
+});
 
 exports.query = async (query, values) => {
     const { rows } = await client.query(query, values);
