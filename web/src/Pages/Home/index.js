@@ -49,3 +49,12 @@ export default function Home() {
     </Container>
   )
 }
+
+fetch('http://localhost:3001/contacts')
+  .then(async (res) => {
+    const json = await res.json();
+    console.log('json: ', json);
+  })
+  .catch((err) => {
+    console.log(err);
+  })
