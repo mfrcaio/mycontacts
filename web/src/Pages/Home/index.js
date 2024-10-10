@@ -26,22 +26,25 @@ export default function Home() {
   )), [contacts, searchTerm]);
 
   useEffect(() => {
-    setIsLoading(true);
+    async function loadContacts() {
+      try {
+        setIsLoading(true);
 
-    fetch(`http://localhost:3001/contacts?orderBy=${orderBy}`)
-    .then(async (res) => {
-      await delay(400);
+        const response = await fetch(
+          `http://localhost:3001/contacts?orderBy=${orderBy}`
+        );
+        await delay(400);
+        const json = await response.json();
 
-      const json = await res.json();
+        setContacts(json);
+      } catch (error) {
+        console.log('error: ', error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
 
-      setContacts(json);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      setIsLoading(false);
-    });
+    loadContacts();
   }, [orderBy]);
 
   function handleToggleOrderBy() {
