@@ -4,11 +4,14 @@ import { Link } from 'react-router-dom';
 import arrow from '../../assets/images/icons/arrow.svg';
 import edit from '../../assets/images/icons/edit.svg';
 import trash from '../../assets/images/icons/trash.svg';
+import frown from '../../assets/images/icons/frown.svg'
+import Button from '../../components/Button';
 import Loader from '../../components/Loader';
 
 import {
   Card,
   Container,
+  ErrorContainer,
   Header,
   InputSearchContainer,
   ListHeader,
@@ -77,14 +80,22 @@ export default function Home() {
       </Header>
 
       {hasError && (
-        <div> ERROR </div>
+        <ErrorContainer>
+          <img src={frown} alt='sad emoji icon'/>
+          <div className="details">
+            <strong>Ocorreu um erro ao obter os seus contatos!</strong>
+            <Button type='button'>
+              Tentar novamente
+            </Button>
+          </div>
+        </ErrorContainer>
       )}
 
       {filteredContacts.length > 0 && (
         <ListHeader orderBy={orderBy}>
           <button type='button' onClick={handleToggleOrderBy}>
             <span>Nome</span>
-            <img src={arrow} alt='arrow' />
+            <img src={arrow} alt='arrow'/>
           </button>
         </ListHeader>
       )}
