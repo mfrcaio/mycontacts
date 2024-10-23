@@ -20,6 +20,7 @@ export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
   const [orderBy, setOrderBy] = useState('asc');
   const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   const filteredContacts = useMemo(() => contacts.filter((contact) => (
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -33,8 +34,8 @@ export default function Home() {
         const contactsList = await ContactsService.listContacts(orderBy);
 
         setContacts(contactsList);
-      } catch (error) {
-        console.log('error: ', error);
+      } catch {
+        setHasError(true);
       } finally {
         setIsLoading(false);
       }
@@ -65,13 +66,19 @@ export default function Home() {
         />
       </InputSearchContainer>
 
-      <Header>
-        <strong>
-          {filteredContacts.length}
-          {filteredContacts.length === 1 ? ' contato' : ' contatos'}
-        </strong>
+      <Header hasError={hasError}>
+        {!hasError && (
+          <strong>
+            {filteredContacts.length}
+            {filteredContacts.length === 1 ? ' contato' : ' contatos'}
+          </strong>
+        )}
         <Link to='/new'>Novo contato</Link>
       </Header>
+
+      {hasError && (
+        <div> ERROR </div>
+      )}
 
       {filteredContacts.length > 0 && (
         <ListHeader orderBy={orderBy}>
